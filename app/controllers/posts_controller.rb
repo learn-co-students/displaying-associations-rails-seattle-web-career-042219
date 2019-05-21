@@ -22,9 +22,17 @@ class PostsController < ApplicationController
 		@categories = Category.all
 	end
 
-	def update
-		post = Post.find(params[:id])
-		post.update(params.require(:post))
-		redirect_to post_path(post)
-	end
+
+	  def update
+	    @post = Post.find(params[:id])
+	    @post.update(post_params)
+
+	    redirect_to @post
+	  end
+
+	private
+	  def post_params
+	    params.require(:post).permit(:title, :description, :category_id, :author_id)
+	    # you can just do params.require(:book).permit! to permit everything (unsafe)
+	  end
 end
