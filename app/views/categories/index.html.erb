@@ -1,5 +1,5 @@
 <h1>Categories</h1>
-
+<h3><%= pluralize(@category.posts.count, 'Post') %></h3>
 <ul>
   <% @categories.each do |c| %>
     <li><%= link_to c.name, category_path(c) %></li>
